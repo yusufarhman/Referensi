@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Panduan Kesiapsiagaan — Gempa Bumi & Tsunami</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#10233A;
+    --paper:#EEF2F4;
+    --card:#FFFFFF;
+    --slate:#55677A;
+    --amber:#E8A33D;
+    --teal:#2C6E7F;
+    --hairline:#DCE3E8;
+  }
+  *{ box-sizing:border-box; }
+  body{
+    margin:0;
+    background:var(--paper);
+    color:var(--ink);
+    font-family:'Inter',sans-serif;
+    -webkit-font-smoothing:antialiased;
+  }
+  .wrap{ max-width:860px; margin:0 auto; padding:56px 24px 72px; }
+
+  .eyebrow{
+    font-family:'IBM Plex Mono',monospace;
+    font-size:12px; letter-spacing:.14em; text-transform:uppercase;
+    color:var(--teal); margin:0 0 12px;
+  }
+  h1{
+    font-family:'Barlow Condensed',sans-serif;
+    font-weight:700; text-transform:uppercase;
+    font-size:clamp(34px,7vw,52px);
+    line-height:1.02; margin:0 0 14px; letter-spacing:.01em;
+  }
+  .subtitle{ color:var(--slate); font-size:15px; max-width:52ch; margin:0 0 24px; }
+
+  .hazard{
+    height:8px; width:100%; border-radius:2px; margin:0 0 44px;
+    background:repeating-linear-gradient(135deg, var(--amber) 0 14px, var(--ink) 14px 28px);
+  }
+
+  h2.section-title{
+    font-family:'Barlow Condensed',sans-serif;
+    font-weight:600; text-transform:uppercase; letter-spacing:.06em;
+    font-size:20px; color:var(--ink);
+    margin:0 0 18px; padding-bottom:10px; border-bottom:1px solid var(--hairline);
+  }
+
+  .video-grid{ display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); gap:18px; margin-bottom:48px; }
+  .video-card{
+    background:var(--card); border:1px solid var(--hairline); border-radius:10px;
+    overflow:hidden; cursor:pointer;
+    transition:transform .15s ease, box-shadow .15s ease;
+  }
+  .video-card:hover{ transform:translateY(-3px); box-shadow:0 10px 24px rgba(16,35,58,.12); }
+  .thumb{ position:relative; aspect-ratio:16/9; background:var(--ink); }
+  .thumb.thumb-fallback{ background:linear-gradient(135deg, var(--ink), var(--teal)); }
+  .thumb img{ width:100%; height:100%; object-fit:cover; display:block; opacity:.92; }
+  .play{
+    position:absolute; inset:0; display:flex; align-items:center; justify-content:center;
+  }
+  .play span{
+    width:46px; height:46px; border-radius:50%;
+    background:var(--amber); display:flex; align-items:center; justify-content:center;
+    box-shadow:0 4px 14px rgba(0,0,0,.3);
+  }
+  .play svg{ width:16px; height:16px; margin-left:2px; }
+  .video-meta{ padding:12px 14px 14px; }
+  .video-tag{ font-family:'IBM Plex Mono',monospace; font-size:10.5px; color:var(--teal); letter-spacing:.08em; text-transform:uppercase; }
+  .video-title{ font-size:14px; font-weight:500; margin-top:4px; line-height:1.3; }
+
+  .doc-list{ display:flex; flex-direction:column; gap:12px; margin-bottom:8px; }
+  .doc-card{
+    display:flex; align-items:center; gap:16px;
+    background:var(--card); border:1px solid var(--hairline); border-radius:10px;
+    padding:16px 18px; text-decoration:none; color:inherit;
+    transition:border-color .15s ease, transform .15s ease;
+  }
+  .doc-card:hover{ border-color:var(--teal); transform:translateX(3px); }
+  .doc-icon{
+    flex-shrink:0; width:40px; height:40px; border-radius:8px;
+    display:flex; align-items:center; justify-content:center;
+    background:var(--paper); color:var(--teal);
+  }
+  .doc-body{ flex:1; }
+  .doc-title{ font-size:14.5px; font-weight:500; }
+  .doc-source{ font-family:'IBM Plex Mono',monospace; font-size:11px; color:var(--slate); margin-top:2px; text-transform:uppercase; letter-spacing:.05em; }
+  .doc-arrow{ color:var(--slate); font-family:'IBM Plex Mono',monospace; }
+
+  footer{ margin-top:48px; font-size:12px; color:var(--slate); text-align:center; }
+
+  /* modal */
+  .modal-overlay{
+    position:fixed; inset:0; background:rgba(16,35,58,.85);
+    display:none; align-items:center; justify-content:center; z-index:50; padding:20px;
+  }
+  .modal-overlay.open{ display:flex; }
+  .modal-box{ width:100%; max-width:720px; }
+  .modal-box iframe{ width:100%; aspect-ratio:16/9; border:0; border-radius:8px; }
+  .modal-close{
+    display:block; margin:0 0 10px auto; color:#fff; font-family:'IBM Plex Mono',monospace;
+    background:none; border:1px solid rgba(255,255,255,.4); border-radius:6px;
+    padding:6px 12px; cursor:pointer; font-size:12px;
+  }
+
+  @media (prefers-reduced-motion: reduce){
+    .video-card, .doc-card{ transition:none; }
+  }
+</style>
+</head>
+<body>
+  <div class="wrap">
+    <p class="eyebrow">Referensi</p>
+    <h1>Kesiapsiagaan Gempa Bumi & Tsunami</h1>
+    <p class="subtitle">Kumpulan video edukasi dan dokumen panduan resmi seputar mitigasi dan kesiapsiagaan bencana gempa bumi serta tsunami.</p>
+    <div class="hazard"></div>
+
+    <h2 class="section-title">Video Edukasi</h2>
+    <div class="video-grid" id="videoGrid"></div>
+
+    <h2 class="section-title">Dokumen & Panduan</h2>
+    <div class="doc-list" id="docList"></div>
+
+    <footer>Terakhir diperbarui: <span id="lastUpdated"></span></footer>
+  </div>
+
+<script>
+  // ======= EDIT BAGIAN INI SAJA =======
+  const videos = [
+    { id: "gnXosx0znS4", tag: "Video 1", title: "Mitigasi Bencana Gempa Bumi - Sebelum Terjadinya Gempa Bumi" },
+    { id: "xPWgX7hf9Pk", tag: "Video 2", title: "Mitigasi Bencana Gempa Bumi - Saat Terjadi Gempa Bumi" },
+    { id: "HMUOu8MqvmU", tag: "Video 3", title: "Mitigasi Bencana Gempa Bumi - Sesudah Terjadi Gempa Bumi" },
+  ];
+
+  const docs = [
+    {
+      title: "Pedoman Kesiapsiagaan Menghadapi Gempa Bumi dan Tsunami",
+      source: "ResearchGate",
+      url: "https://www.researchgate.net/publication/322095200_Pedoman_Kesiapsiagaan_Menghadapi_Gempa_Bumi_dan_Tsunami"
+    },
+    {
+      title: "Materi pendukung — ganti judul sesuai isi dokumen",
+      source: "Google Drive",
+      url: "https://drive.google.com/file/d/1DY8kzj1gC8at93nRYv4rqlOJrUqVtK2D/view?usp=drivesdk"
+    },
+  ];
+  // ====================================
+
+  const grid = document.getElementById('videoGrid');
+  videos.forEach(v => {
+    const card = document.createElement('a');
+    card.className = 'video-card';
+    card.href = `https://www.youtube.com/watch?v=${v.id}`;
+    card.target = '_blank';
+    card.rel = 'noopener noreferrer';
+    card.innerHTML = `
+      <div class="thumb">
+        <img src="https://img.youtube.com/vi/${v.id}/hqdefault.jpg" alt="" loading="lazy"
+             onerror="this.onerror=null;this.style.display='none';this.parentElement.classList.add('thumb-fallback');">
+        <div class="play"><span>
+          <svg viewBox="0 0 24 24" fill="white"><path d="M8 5v14l11-7z"/></svg>
+        </span></div>
+      </div>
+      <div class="video-meta">
+        <div class="video-tag">${v.tag}</div>
+        <div class="video-title">${v.title}</div>
+      </div>`;
+    grid.appendChild(card);
+  });
+
+  const docList = document.getElementById('docList');
+  const docIcons = {
+    "ResearchGate": '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M6 3h9l5 5v13H6z"/><path d="M14 3v5h5"/><path d="M9 13h6M9 16h6M9 10h3"/></svg>',
+    "Google Drive": '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M8 3l8 0 5 9-4 8H7L3 12z"/></svg>'
+  };
+  docs.forEach(d => {
+    const a = document.createElement('a');
+    a.className = 'doc-card';
+    a.href = d.url; a.target = '_blank'; a.rel = 'noopener noreferrer';
+    a.innerHTML = `
+      <div class="doc-icon">${docIcons[d.source] || ''}</div>
+      <div class="doc-body">
+        <div class="doc-title">${d.title}</div>
+        <div class="doc-source">${d.source}</div>
+      </div>
+      <div class="doc-arrow">&#8594;</div>`;
+    docList.appendChild(a);
+  });
+
+  document.getElementById('lastUpdated').textContent = new Date().toLocaleDateString('id-ID', { year:'numeric', month:'long', day:'numeric' });
+</script>
+</body>
+</html>
